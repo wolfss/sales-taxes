@@ -1,0 +1,9 @@
+1 book: 12.49
+1 music CD: 16.49
+1 chocolate bar: 0.85
+2 imported box of chocolates: 22.35
+4 imported bottle of perfume: 86.84
+1 bottle of perfume: 20.89
+1 packet of headache pills: 9.75
+Sales Taxes: 15.85
+Total: 169.66

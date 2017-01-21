@@ -58,5 +58,35 @@ public class Good {
 		this.baseTaxFree = baseTaxFree;
 		this.price = price;
 	}
+	
+	@Override
+	public int hashCode() {
+		int result = 17;
+		result = 31 * result + (imported ? 1 : 0);  
+		result = 31 * result + (baseTaxFree ? 1 : 0);  
+		result = 31 * result + (description==null ? 0 : description.hashCode());
+		return result;
+	}
+	
+	/**
+	 * Overridden equals method in order to identify the goods already present into the basket.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		
+		if ( this == obj ) {
+			return true;
+		}
+		
+		if ( !(obj instanceof Good) ) {
+			return false;
+		}
 
+		Good good = (Good) obj;
+		
+		return
+				this.isBaseTaxFree() == good.isBaseTaxFree() &&
+				this.isImported() == good.isImported() &&
+				this.getDescription().equalsIgnoreCase(good.getDescription());
+	}
 }

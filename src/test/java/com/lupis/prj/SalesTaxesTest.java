@@ -47,6 +47,17 @@ public class SalesTaxesTest
     	assertTrue(result);
     }
 	
+	@Test
+    public void testInputMario(){
+		String pathInputFile1 = "src/test/resources/inputMario.txt";
+		String pathOutputFile1 = "src/test/resources/outputMario.txt";
+		String pathTargetOutputFile = "src/test/resources/targetOutputMario.txt";
+		SalesTaxesService service = new SalesTaxesService();
+		service.calculateReceipt(pathInputFile1, pathOutputFile1);
+		boolean result = checkOutput(pathTargetOutputFile, pathOutputFile1);
+    	assertTrue(result);
+    }
+	
 	/**
 	 * Utility method for checking actual output against the expected one.
 	 * Spaces are not considered in the comparison
@@ -67,7 +78,12 @@ public class SalesTaxesTest
 				for(int i=0; i<output.size(); i++){
 					String cleanedStringOutput = output.get(i).replaceAll("\\s", "");
 					String cleanedStringTarget = target.get(i).replaceAll("\\s", "");
-					sameContent = cleanedStringOutput.equalsIgnoreCase(cleanedStringTarget);
+					if(cleanedStringOutput.equalsIgnoreCase(cleanedStringTarget)){
+						sameContent = true;
+					} else {
+						sameContent = false;
+						break;
+					}
 				}
 			} 
 		} catch (IOException e) {

@@ -64,7 +64,7 @@ public class SalesTaxesService {
 
 					// Extracting quantity
 					Matcher m1 = SalesTaxesConstants.INPUT_PATTERN_PART_1.matcher(line);
-					m1.find();
+					m1.find();   
 					int quantityEnd = m1.end();
 					String quantityRaw = line.substring(m1.start(), quantityEnd);
 					int quantity = Integer.parseInt(quantityRaw.trim());
@@ -86,8 +86,20 @@ public class SalesTaxesService {
 					// Defining if it's a tax-free good
 					boolean taxFree = isTaxFree(line);
 
+					// Create new instance of Good
 					Good good = new Good(description, price, quantity, imported, taxFree);
-					basket.add(good);
+					
+					/* Check if already exists a similar good into the basket. 
+					 * If yes, updates quantity and price of the existing good.
+					 * If no, add the good to the basket */
+					int index ;
+					if((index = basket.indexOf(good))!=-1){
+						Good g = basket.get(index);
+						g.setPrice(g.getPrice().add(good.getPrice()));
+						g.setQuantity(g.getQuantity()+(good.getQuantity()));
+					} else {
+						basket.add(good);
+					}
 				}
 			}
 		} catch (IOException e) {

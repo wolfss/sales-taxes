@@ -47,8 +47,11 @@ public class SalesTaxesTest
     	assertTrue(result);
     }
 	
+	/**
+	 * Testing feature which allows to recognize and aggregate duplicated goods contained in the basket  
+	 */
 	@Test
-    public void testInputMario(){
+    public void testFeature(){
 		String pathInputFile1 = "src/test/resources/inputMario.txt";
 		String pathOutputFile1 = "src/test/resources/outputMario.txt";
 		String pathTargetOutputFile = "src/test/resources/targetOutputMario.txt";

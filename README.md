@@ -48,8 +48,7 @@ Output 3:
 Sales Taxes: 6.70
 Total: 74.68
 
-
-*** Comments ***
+***COMMENTS***
 
 In order to satisfy the requirements, a service class named SalesTaxesService.java has been created.
 That service exposes a single method for calculating the receipt.
